@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+        <meat charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>gira la carta</title>
+
+        <style>
+            img   {
+
+                width: 300px
+
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <span class="counter"><h1>Punti =</span><span id="counter" class="counter">0</span>
+        </div>
+        <div id="tavoloDaGioco"></div>
+
+
+        <script>
+            let NcarteGirate = 0
+            letcartaGirata = null
+            let carte =  ["pokemon-card-front.png","pokemon-card-davanti.png","pokemon-card-front.png","pokemon-card-davanti.png",]
+
+            carte.sort (() => Math.random() - 0.5);
+
+
+            let tavolo = document.querySelector('#tavoloDaGioco')
+            carte.forEach(element =>  {
+                tavolo.innerHTML +=  '<img id="' + element + '" src="pokemon-card-back.png" onclick="gira(this)" />'
+
+            });
+
+            var counter = document.getElementById("counter") ;
+            var count = 0;
+
+            function gira(carta) {
+                NcarteGirate++
+                console.log(NcarteGirate)
+                carta.src = carta.id
+                if (NcarteGirate == 1)
+                    primaCartaGirata = carta
+                else {
+                    NcarteGirate = 0
+                    if (carta.src == primaCartaGirata.src) {
+                        count++;
+                        counter.textContent = count;
+                    } else  {
+                        setTimeout(function()   {
+                            carta.src = "pokemon-card-back.png";
+                            primaCartaGirata.src = "pokemon-card-back.png";
+                        }, 1000)
+                    }
+                }      
+              
+            }
+                                        //carta.src = "pokemon-card-back.png"
+            </script>
+        </body>
+</html>
